@@ -57,7 +57,7 @@ public class DbOps {
 	public void obtainUserInfo() {
 		try {
 			String query = "SELECT Username, Password, Email FROM user";
-			PreparedStatement ps = conn.prepareStatement(query);
+			ps = conn.prepareStatement(query);
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
 			
@@ -92,7 +92,7 @@ public class DbOps {
 	public void obtainUserQuestions() {
 		try {
 			String query = "SELECT Username, Question1, Question2, Question3, Answer1, Answer2, Answer3 FROM user";
-			PreparedStatement ps = conn.prepareStatement(query);
+			ps = conn.prepareStatement(query);
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
 			
@@ -127,7 +127,7 @@ public class DbOps {
 	public void obtainBannedPasses() {
 		try {
 			String query = "SELECT Password FROM bannedpasswords";
-			PreparedStatement ps = conn.prepareStatement(query);
+			ps = conn.prepareStatement(query);
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
 			
@@ -168,7 +168,7 @@ public class DbOps {
 					+ "', '"+ user.getQuestion1() + "', '"+ user.getAnswer1() + "', '"+ user.getQuestion2()
 					+ "', '"+ user.getAnswer2() + "', '" + user.getQuestion3() + "', '" + user.getAnswer3() + "' )";
 			
-			PreparedStatement ps = conn.prepareStatement(query);
+			ps = conn.prepareStatement(query);
 			ps.execute();
 		} 
 		catch (SQLException sqle) {
@@ -190,7 +190,7 @@ public class DbOps {
 			String query = "INSERT INTO admin (Username, DateSubmitted, ResetApproval, Display)"
 					+ "VALUES ('"+ admin.getUsername() + "', '"+ admin.getDateSubmitted() + "', '" + admin.getApproval()
 					+ "', '" + admin.getDisplay() + "' )";
-			PreparedStatement ps = conn.prepareStatement(query);
+			ps = conn.prepareStatement(query);
 			ps.execute();
 		} 
 		catch (SQLException sqle) {
@@ -210,7 +210,7 @@ public class DbOps {
 	public void obtainPasswordRequests() {
 	    try {
 	      String query = "SELECT Username, DateSubmitted, ResetApproval, Display FROM admin";
-	      PreparedStatement ps = this.conn.prepareStatement(query);
+	      ps = this.conn.prepareStatement(query);
 	      ps.execute();
 	      ResultSet rs = ps.getResultSet();
 	      while (rs.next()) {
@@ -244,7 +244,6 @@ public class DbOps {
 	public void obtainPendingRequests() {
 		try {
 			String query = "SELECT * FROM admin WHERE Display = 1";
-			//String query = "SELECT Username, DateSubmitted, ResetApproval, Display FROM admin";
 			ps = conn.prepareStatement(query);
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
@@ -280,7 +279,7 @@ public class DbOps {
 	public void updateAdminRequests(String user, int approval, int display) {
 		try {
 			String query = "Update admin SET ResetApproval = ?, Display = ? WHERE Username = ?";
-			PreparedStatement ps = conn.prepareStatement(query);
+			ps = conn.prepareStatement(query);
 			ps.setInt(1, approval);
 			ps.setInt(2, display);
 			ps.setString(3, user);
@@ -303,7 +302,7 @@ public class DbOps {
 	void updatePassword(String user, String password) {
 		try {
 			String query = "UPDATE User SET Password = ? WHERE Username = ?";
-			PreparedStatement ps = conn.prepareStatement(query);
+			ps = conn.prepareStatement(query);
 			ps.setString(1, password);
 			ps.setString(2, user);
 			ps.executeUpdate();
